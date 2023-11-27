@@ -62,8 +62,8 @@ module Imgix
     end
 
     ALIASES = {
-      width:           :w,
-      height:          :h,
+      width:           :width,
+      height:          :height,
       rotation:        :rot,
       noise_reduction: :nr,
       sharpness:       :sharp,
@@ -208,7 +208,7 @@ module Imgix
       end
 
       srcset_widths.each do |width|
-        params[:w] = width
+        params[:width] = width
         srcset += "#{to_url(params, options)} #{width}w,\n"
       end
 
@@ -225,9 +225,9 @@ module Imgix
       quality = params[:q]
 
       target_ratios.each do |ratio|
-        params[:dpr] = ratio
+        # params[:dpr] = ratio
 
-        params[:q] = quality || DPR_QUALITY[ratio] unless disable_variable_quality
+        # params[:q] = quality || DPR_QUALITY[ratio] unless disable_variable_quality
 
         srcset += "#{to_url(params, options)} #{ratio}x,\n"
       end
